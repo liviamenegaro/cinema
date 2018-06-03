@@ -98,6 +98,17 @@
   </head>
   <body>
     <div id="map"></div>
+      <script>
+    if (navigator.serviceWorker.controller) {
+      console.log('[PWA Builder] active service worker found, no need to register')
+    } else {
+      navigator.serviceWorker.register('sw.js', {
+        scope: './'
+      }).then(function (reg) {
+        console.log('Service worker has been registered for scope:' + reg.scope);
+      });
+    };
+  </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmh11hp0kjmGMnioKHH-PiYA7i3xpXoMU&libraries=places&callback=initMap"
                  async defer></script>
     <script scr="js/main.js" async> </script>
